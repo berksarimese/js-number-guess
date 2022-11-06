@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="number-guess.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="main-container">
+        
+        <header>
+            <h1>GUESS IT - THE GAME</h1>
+            <h2>NUMBERS BETWEEN</h2>
+            <label id="numbers-between"> ? - ? </label>
+        </header>
+        <!--RANDOM NUMBER-->
+        <div class="random-number-container">
+            <div class="line"></div>
+            <div class="random-box">
+                <label id="random-number"> ? </label>
+            </div>
+        </div>
+        <!--GUESS COUNT-->
+        <div class="guess-count">
+            <h2 id="guess-count"> GUESS COUNT: 0 </h2> 
+        </div>
+        <!--INPUT, GUESS AND RESTART-->    
+        <div class="input-restart">        
+        <input type="text" id="guess-number" class="guess-input" placeholder="-WRITE A NUMBER!-"> 
+        <button id="guess-button"> MAKE A GUESS </button>
+        <button id="restart"> RESTART </button>
+        </div>
+        <!--SCORE AND INFO-->
+        <div class="score-info">
+            <div class="score-item">SCORE: <label id="score">???</label></div>
+            <div class="score-item">HIGH SCORE: <label id="high-score">???</label></div>
+        </div>
+        
+
+    </div>
+    
+    <script src="number-guess.js"></script>
+</body>
+</html>

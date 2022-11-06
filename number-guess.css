@@ -1,0 +1,182 @@
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: bisque;
+    font-family: Helvetica;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 70px;
+    color: brown;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: rgb(48, 109, 75);
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+#numbers-between {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+    border: 3px solid rgb(48, 109, 75);
+    border-radius: 20px;
+    padding: 0px 50px;
+    color: brown;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.random-number-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin-top: 15px;
+}
+
+.random-box {
+    transition-duration: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(112, 177, 87);
+    border: 5px solid rgb(48, 109, 75) ;
+    height: 100%;
+    width: 150px;
+    z-index: 5;
+}
+
+.random-box:hover {
+    transition-duration: 0.3s;
+    width: 200px;
+    background-color: rgb(48, 109, 75);
+    height: 90%;
+}
+
+.random-box > label {
+    transition-duration: 0.3s;
+    color: white;
+    font-size: 50px;
+}
+
+.random-box:hover > label {
+    transition-duration: 0.3s;
+    color: rgb(112, 177, 87);
+}
+
+.line {
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background-color: rgb(48, 109, 75);
+    z-index: 0;
+}
+
+.guess-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-restart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.guess-input {
+    background-color:rgb(112, 177, 87);
+    border: 2px rgb(112, 177, 87) solid;
+    text-align: center;
+    height: 48px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.guess-input:hover {
+    border: 2px rgb(255, 255, 255) solid;
+}
+
+button {
+    transition-duration: 0.3s;
+    width: 100%;
+    height: 50px;
+    border: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#guess-button {
+    background-color:rgb(48, 109, 75);
+}
+
+#guess-button:hover {
+    background-color: orange;
+}
+
+#restart {
+    background-color: brown;
+}
+
+#restart:hover {
+    background-color: rgb(252, 77, 77);
+}
+
+
+.score-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.score-item {
+    padding: 0px 30px;
+    font-weight: bold;
+    color: brown;
+}
+
+#score {
+    color: black;
+}
+
+#high-score {
+    color: green;
+}
+
+@media only screen and (max-width: 800px) {
+    h1 {
+        font-size: 30px;
+    }
+}
