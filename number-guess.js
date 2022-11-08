@@ -3,37 +3,71 @@ const randomNumberText = document.querySelector('#random-number');
 const guessBtn = document.querySelector('#guess-button');
 const restartBtn = document.querySelector('#restart');
 const guessCount = document.querySelector('#guess-count');
+const characterError = document.querySelector('#character-error');
+const betweenError = document.querySelector('#between-error');
+const inputNumber = document.querySelector('#guess-number');
 
-let inputNumber = 0;
 let betweenNumber = 0;
 let betweenNumberMax = 0;
 let randomNumber = 0;
 let guessCountNumber = 0;
+let chars = 0;
 
 numberGenerator();
-guessBtn.addEventListener('click', clickGuess);
+guessBtn.addEventListener('click', characterTest);
 restartBtn.addEventListener('click', numberGenerator);
+
+
+//CHARACTER TEST
+function characterTest(){
+    let charCount = 0;
+    chars = inputNumber.value.split("");
+    console.log(chars);
+
+    for (let i = 0; i < chars.length; i++) {
+        for(let k = 0; k < 10; k++) {
+            if (chars[i] == k) {
+            charCount ++;
+    }}}
+
+    if(charCount != chars.length) {
+        console.log('farklı karakter');
+        characterError.style.display = 'flex';
+        betweenError.style.display = 'none';
+    } else { 
+        if((inputNumber.value > betweenNumber)) {
+            betweenError.innerText = 'has to be between' + ' ' + '0' + ' ' + '-' + ' ' + betweenNumber + '*';
+            betweenError.style.display = 'flex';
+            characterError.style.display = 'none';
+        } else {
+        clickGuess();
+        characterError.style.display = 'none';
+        betweenError.style.display = 'none';
+        console.log('doğru karakter'); }}
+}
+    
 
 //NUMBER GENERATE AND RESET
 function numberGenerator(){
-    betweenNumberMax = Math.round(Math.random()*20) + 1;
+    betweenNumberMax = Math.round(Math.random()*100) + 1;
     betweenNumber = Math.round(Math.random()*betweenNumberMax);
     randomNumber = Math.round(Math.random()*betweenNumber);
     numbersBetween.innerText = 0 + ' - ' + betweenNumber;
     randomNumberText.innerText = '?';
     guessCountNumber = 0;
     guessCount.innerText = 'GUESS COUNT:' + ' ' + guessCountNumber;
-    inputNumber = document.querySelector('#guess-number').value = "";
-    inputNumber = document.querySelector('#guess-number').disabled = false;
+    inputNumber.value = "";
+    inputNumber.disabled = false;
     //randomNumberText.innerText = randomNumber; //ACTIVATE WHEN YOU NEED TO SEE ?
     inputUnlock();
+    characterError.style.display = 'none';
+    betweenError.style.display = 'none';
     }
 
 //GUESS FUNCTION
 function clickGuess(){
-    inputNumber = document.querySelector('#guess-number').value;
-    if(inputNumber == randomNumber) {
-        inputNumber = document.querySelector('#guess-number').disabled = true;
+    if(inputNumber.value == randomNumber) {
+        inputNumber.disabled = true;
         guessCountNumber ++;
         if(guessCountNumber == 1) {
             guessCount.innerText = 'YOU GOT IT RIGHT ON THE' + ' ' + guessCountNumber + 'st' + ' ' + 'TRY';
