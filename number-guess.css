@@ -155,7 +155,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 30px;
     padding-left: 30px;
     padding-right: 30px;
@@ -169,10 +169,6 @@ button {
 
 #score {
     color: black;
-}
-
-#high-score {
-    color: green;
 }
 
 .error-message {

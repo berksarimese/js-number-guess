@@ -12,17 +12,18 @@ let betweenNumberMax = 0;
 let randomNumber = 0;
 let guessCountNumber = 0;
 let chars = 0;
+let countPoint = 0;
+let scoreArray = [];
 
 numberGenerator();
 guessBtn.addEventListener('click', characterTest);
 restartBtn.addEventListener('click', numberGenerator);
 
-
 //CHARACTER TEST
 function characterTest(){
+    if(inputNumber.value != ""){
     let charCount = 0;
     chars = inputNumber.value.split("");
-    console.log(chars);
 
     for (let i = 0; i < chars.length; i++) {
         for(let k = 0; k < 10; k++) {
@@ -31,7 +32,6 @@ function characterTest(){
     }}}
 
     if(charCount != chars.length) {
-        console.log('farklı karakter');
         characterError.style.display = 'flex';
         betweenError.style.display = 'none';
     } else { 
@@ -43,8 +43,7 @@ function characterTest(){
         clickGuess();
         characterError.style.display = 'none';
         betweenError.style.display = 'none';
-        console.log('doğru karakter'); }}
-}
+    }}}}
     
 
 //NUMBER GENERATE AND RESET
@@ -62,6 +61,7 @@ function numberGenerator(){
     inputUnlock();
     characterError.style.display = 'none';
     betweenError.style.display = 'none';
+    countPoint = 0;
     }
 
 //GUESS FUNCTION
@@ -72,24 +72,31 @@ function clickGuess(){
         if(guessCountNumber == 1) {
             guessCount.innerText = 'YOU GOT IT RIGHT ON THE' + ' ' + guessCountNumber + 'st' + ' ' + 'TRY';
             inputLock();
+            calculateScore();
         }
         if(guessCountNumber == 2) {
             guessCount.innerText = 'YOU GOT IT RIGHT ON THE' + ' ' + guessCountNumber + 'nd' + ' ' + 'TRY';
             inputLock();
+            calculateScore();
         }
         if(guessCountNumber == 3) {
             guessCount.innerText = 'YOU GOT IT RIGHT ON THE' + ' ' + guessCountNumber + 'rd' + ' ' + 'TRY';
             inputLock();
+            calculateScore();
         }
         if(guessCountNumber > 3) {
             guessCount.innerText = 'YOU GOT IT RIGHT ON THE' + ' ' + guessCountNumber + 'th' + ' ' + 'TRY';
             inputLock();
+            calculateScore();
         }
     } else {
+        if(countPoint < betweenNumber){ countPoint ++; }
         guessCountNumber ++;
         guessCount.innerText = 'GUESS COUNT:' + ' ' + guessCountNumber;
     }}
 
+
+//LOCKING INPUT AND GUESS BUTTON
 function inputLock() {
     randomNumberText.innerText = randomNumber;
     guessBtn.style.backgroundColor = 'orange';
@@ -97,8 +104,40 @@ function inputLock() {
     guessBtn.disabled = true;
 }
 
+//UNLOCKING INPUT AND GUESS BUTTON
 function inputUnlock() {
     guessBtn.style.backgroundColor = '';
     guessBtn.style.cursor = 'pointer';
     guessBtn.disabled = false;
+}
+
+//STORAGE SCORE DATA IN MAXIMUM 3 ELEMENT ARRAY - DELETING 3rd ADDING TO 1st
+function calculateScore(){
+    const newScore = {
+        max: betweenNumber,
+        guess: countPoint,
+    }
+    if(scoreArray.length > 2) {
+        scoreArray.pop();
+        scoreArray.unshift(newScore);
+    } else { scoreArray.unshift(newScore); }
+
+    addScore();
+}
+
+//DELETING OLD SCORE TABLE AND CREATING THE NEW ONE
+function addScore(){
+    const scoreTable = document.querySelector('.score-info');
+    const cnt = scoreTable.childElementCount;
+    
+    for (let i = 0; i < scoreArray.length; i++) {
+        const div = document.createElement('div');
+        div.className = 'score-item';
+        div.innerText = scoreArray[i].max + ' ' + '-' + ' ' + scoreArray[i].guess + ' ' + ':' + ' ' + (scoreArray[i].max - scoreArray[i].guess);
+        scoreTable.appendChild(div);
+    }
+
+    for (let k = cnt - 1; k > 0; k--) {
+        scoreTable.removeChild(scoreTable.children[k]); 
+    }
 }
